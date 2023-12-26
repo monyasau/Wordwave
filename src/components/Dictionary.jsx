@@ -3,45 +3,55 @@ import axios from "axios";
 
 let Dictionary = () => {
   const [userInput, setUserInput] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [dictData, setDictData] = useState(null);
 
   const updateUserInput = (event) => {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 || event.type === "click") {
       setUserInput(event.target.value);
+    }else {
+        //for button
+        setInputValue(event.target.value)
     }
   };
-
-  useEffect(() => {
+  const buttonUpdateDict = ()=>{
+    setUserInput(inputValue);
+  }
+  
+  const fetchDictionaryData=()=>{
     axios
-      .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`)
-      .then(function (response) {
-        setDictData(response.data);
-        console.log(dictData);
-      })
-      .catch(function (error) {
-        setDictData(null)
-      })
+    .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`)
+    .then(function (response) {
+      setDictData(response.data);
+      console.log(dictData);
+    })
+    .catch(function (error) {
+      setDictData(null)
+    })
+  }
+  useEffect(() => {
+    fetchDictionaryData()
   }, [userInput]);
 
   return (
     <>
       <div className="">
-        <div className="max-w-screen-sm mx-auto md:py-36 py-12">
+        <div className="max-w-screen-sm mx-auto py-12">
           <div className="w-full border rounded h-16 text-3xl">
             <input
-              className="bg-[#f4f4f4] w-[96%] h-full px-4"
+              className="bg-[#f4f4f4] md:w-[96%] w-[90%]  h-full px-4"
               type="text"
               autoFocus
               onKeyUp={updateUserInput}
             />
-            <button className="w-[4%]" onClick={updateUserInput}>
+            <button className="md:w-[4%] w-[10%] " onClick={buttonUpdateDict}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="#b9b9b9"
-                className="w-6 h-6"
+                className="w-6 mx-auto h-6"
               >
                 <path
                   strokeLinecap="round"
@@ -51,23 +61,43 @@ let Dictionary = () => {
               </svg>
             </button>
           </div>
-          <h1 className="text-darkGray mb-3 text-3xl font-bold">
-            Word:{userInput}{" "}
+          <h1 className="text-[#a2a2a2] mb-3 text-3xl font-bold text-center">
+            {userInput.toLocaleUpperCase()}
           </h1>
 
           {dictData ? (
             <div className="">
-              Definitions :{" "}
+              Definitions, Phonetics & Usage Examples of {userInput} :
               {dictData[0].meanings.map((meaning, i) => (
-                <div key={i}>
-                  <li>({(dictData[0].meanings[i].partOfSpeech).toUpperCase()}) {dictData[0].meanings[i].definitions[0].definition}</li>
-                </div>
-              ))}
+  <div key={i} className="border my-2 p-6">
+    <h4 >({(dictData[0].meanings[i].partOfSpeech).toUpperCase()})</h4>
+    
+    {dictData[0].meanings[i].definitions.map((definition, j) => (
+      <div key={j} className="border my-4 grid grid-cols-2">
+        <div className="border px-1  flex flex-wrap items-center justify-center">
+
+            <p><strong>Definition: </strong>{definition.definition}</p>
+            {definition.example && <p> <strong>Example: </strong>{definition.example}</p>}
+        </div>
+        <div className="border px-1 flex flex-wrap items-center justify-center">
+            <p><strong>Phonetic: </strong>: {dictData[0].phonetic}</p>
+            <audio controls className="w-[80%]">
+            <source src={dictData[0].phonetics[0].audio} type="audio/mp3" />
+            Your browser does not support or has disabled playing audio
+            </audio>
+        </div>
+      </div>
+    ))}
+  </div>
+))}
+
+
             </div>
           ) : (
             <div>Sorry, definition not found</div>
           )}
         </div>
+        {/* <pre>{JSON.stringify(dictData, null, 2)}</pre> */}
       </div>
     </>
   );
