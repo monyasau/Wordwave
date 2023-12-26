@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 let Dictionary = () => {
-  const [userInput, setUserInput] = useState();
+  const [userInput, setUserInput] = useState("");
   const [dictData, setDictData] = useState(null);
 
   const updateUserInput = (event) => {
@@ -17,13 +17,10 @@ let Dictionary = () => {
       .then(function (response) {
         setDictData(response.data);
         console.log(dictData);
-      });
-    //   .catch(function (error) {
-    //     setDictData(error.data.title)
-    //   })
-    {
-      setDictData(null);
-    }
+      })
+      .catch(function (error) {
+        setDictData(null)
+      })
   }, [userInput]);
 
   return (
@@ -63,7 +60,7 @@ let Dictionary = () => {
               Definitions :{" "}
               {dictData[0].meanings.map((meaning, i) => (
                 <div key={i}>
-                  <li> {dictData[0].meanings[i].definitions[0].definition}</li>
+                  <li>({(dictData[0].meanings[i].partOfSpeech).toUpperCase()}) {dictData[0].meanings[i].definitions[0].definition}</li>
                 </div>
               ))}
             </div>
