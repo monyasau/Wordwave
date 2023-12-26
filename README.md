@@ -1,8 +1,24 @@
-# React + Vite
+# React Dictionary App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React application that allows users to search for word definitions, phonetics, and usage examples using the DictionaryAPI. The app provides a 
+clean and user-friendly interface for looking up information about a specific word.
 
-Currently, two official plugins are available:
+# Usage:
+Enter a word in the input field and press Enter or click the search button.
+The app will fetch and display information about the entered word, including definitions, phonetics, and usage examples.
+If the word is not found, the app will display an error message with suggestions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Features:
+Word Search: Users can enter a word in the input field to search for its definition.
+Button Trigger: Alternatively, users can click the search button to trigger the word search.
+Phonetic Pronunciation: The app displays the phonetic pronunciation of the word, along with an audio control for listening to the pronunciation.
+Meanings and Definitions: The app provides meanings and definitions for the entered word, along with part-of-speech information.
+Usage Examples: If available, usage examples for each definition are displayed.
+Error Handling: In case the word is not found or there is an issue with the API, the app gracefully handles errors and provides user-friendly messages.
+
+# Technologies used in this project:
+React: The app is built using the React library for building user interfaces.
+axios: Used for making HTTP requests to the DictionaryAPI.
+Tailwind CSS: Provides utility classes for styling the app.
+
+# Live link:
