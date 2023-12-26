@@ -81,7 +81,7 @@ let Dictionary = () => {
             {definition.example && <p> <strong>Usage Example: </strong>{definition.example}</p>}
         </div>
         <div className="border px-1 flex flex-wrap items-center justify-center">
-            <p><strong>Phonetic: </strong>: {dictData[0].phonetic}</p>
+            <p><strong>Phonetic: </strong> {dictData[0].phonetic}</p>
             <audio controls className="w-[80%]">
             <source src={dictData[0].phonetics[0].audio} type="audio/mp3" />
             Your browser does not support or has disabled playing audio
@@ -100,8 +100,8 @@ let Dictionary = () => {
             <div className="md:text-1xl md:my-8 w-[90%] mx-auto text-center text-base">Try checking your internet connection, if that doesn't work, try again later</div>
             </>
           )}
+        
         </div>
-        {/* <pre>{JSON.stringify(dictData, null, 2)}</pre> */}
       </div>
     </>
   );

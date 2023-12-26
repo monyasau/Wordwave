@@ -1,12 +1,13 @@
-import Dictionary from "./components/Dictionary"
+import Dictionary from "./components/Dictionary";
+import Footer from "./components/Footer";
 
 function App() {
-
   return (
     <>
-    <Dictionary/>
+      <Dictionary />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
