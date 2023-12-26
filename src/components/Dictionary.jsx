@@ -95,7 +95,10 @@ let Dictionary = () => {
 
             </div>
           ) : (
-            <div>Sorry, definition not found</div>
+            <>
+            <div className="text-center border text-4xl">Sorry, definition not found 🥺</div>
+            <div className="md:text-1xl md:my-8 w-[90%] mx-auto text-center text-base">Try checking your internet connection, if that doesn't work, try again later</div>
+            </>
           )}
         </div>
         {/* <pre>{JSON.stringify(dictData, null, 2)}</pre> */}
