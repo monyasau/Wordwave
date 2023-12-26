@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 let Dictionary = () => {
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState("hello");
   const [inputValue, setInputValue] = useState("");
   const [dictData, setDictData] = useState(null);
 
@@ -37,14 +37,15 @@ let Dictionary = () => {
     <>
       <div className="">
         <div className="max-w-screen-sm mx-auto py-12">
-          <div className="w-full border rounded h-16 text-3xl">
+          <div className="w-full border rounded h-16 md:text-3xl text-2xl">
             <input
-              className="bg-[#f4f4f4] md:w-[96%] w-[90%]  h-full px-4"
+            placeholder="Enter a word here to search"
+              className="bg-[#f4f4f4] md:w-[96%] w-[85%]  h-full px-4"
               type="text"
               autoFocus
               onKeyUp={updateUserInput}
             />
-            <button className="md:w-[4%] w-[10%] " onClick={buttonUpdateDict}>
+            <button className="md:w-[4%] w-[15%] " onClick={buttonUpdateDict}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -67,7 +68,7 @@ let Dictionary = () => {
 
           {dictData ? (
             <div className="">
-              Definitions, Phonetics & Usage Examples of {userInput} :
+              <p className="pl-6">Definitions, Phonetics & Usage Examples of {userInput} :</p>
               {dictData[0].meanings.map((meaning, i) => (
   <div key={i} className="border my-2 p-6">
     <h4 >({(dictData[0].meanings[i].partOfSpeech).toUpperCase()})</h4>
@@ -77,7 +78,7 @@ let Dictionary = () => {
         <div className="border px-1  flex flex-wrap items-center justify-center">
 
             <p><strong>Definition: </strong>{definition.definition}</p>
-            {definition.example && <p> <strong>Example: </strong>{definition.example}</p>}
+            {definition.example && <p> <strong>Usage Example: </strong>{definition.example}</p>}
         </div>
         <div className="border px-1 flex flex-wrap items-center justify-center">
             <p><strong>Phonetic: </strong>: {dictData[0].phonetic}</p>
