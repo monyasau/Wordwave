@@ -22,3 +22,4 @@ axios: Used for making HTTP requests to the DictionaryAPI.
 Tailwind CSS: Provides utility classes for styling the app.
 
 # Live link:
+ https://wordwave.netlify.app
