@@ -19,11 +19,13 @@ let Dictionary = () => {
   };
 
   const fetchDictionaryData = () => {
+    
     axios
       .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`)
       .then(function (response) {
-        setDictData(response.data);
-        console.log(dictData);
+        const newData = response.data;
+        setDictData(newData);
+        console.log(newData);
       })
       .catch(function (error) {
         setDictData(null);
@@ -62,7 +64,7 @@ let Dictionary = () => {
               </svg>
             </button>
           </div>
-          <h1 className="text-[#a2a2a2] mb-3 text-3xl font-bold text-center">
+          <h1 className="text-[#455] mb-3 text-3xl font-bold text-center">
             {userInput.toLocaleUpperCase()}
           </h1>
 
@@ -72,18 +74,18 @@ let Dictionary = () => {
                 Definitions, Synonyms, Phonetics & Usage Examples of <span className="font-bold"> {userInput}</span> :
               </p>
 
-              {dictData[0].meanings[0].synonyms? (
+              {dictData[0].meanings[0].synonyms.length? (
                 <div className="border my-4 p-6">
+                  {<span className="font-bold"> Synonyms:</span>}
                   {
                     dictData[0].meanings[0].synonyms.map((synonym,synonymIteration)=>(
-                      <span key={synonymIteration} className=""> {synonym},</span>
-                       
+                      <span key={synonymIteration} className="text-[#444] text-base"> {synonym},</span>
                     ))
                   }
                 </div>
               ):
               <div className="border my-4 p-6">
-                No Synonyms Found
+                <span className="font-bold">Synonyms: </span> <span className="text-[#444]"> No synonyms found</span>
               </div>
               }
 
@@ -98,29 +100,27 @@ let Dictionary = () => {
                     <div key={j} className="border my-4 grid grid-cols-2">
                       <div className="border px-1  flex flex-wrap items-center justify-center">
                         <p>
-                          <strong>Definition: </strong>
+                          <span className="font-bold">Definition: </span>
                           {definition.definition}
                         </p>
                         {definition.example && (
                           <p>
-                            {" "}
-                            <strong>Usage Example: </strong>
+                            <span  className="font-bold">Usage Example: </span>
                             {definition.example}
                           </p>
                         )}
                       </div>
                       <div className="border px-1 flex flex-wrap items-center justify-center">
                         <p>
-                          <strong>Phonetic: </strong> {dictData[0].phonetic}
+                          <span  className="font-bold">Phonetic: </span> {dictData[0].phonetic}
                         </p>
-                        <audio controls className="w-[80%]">
-                          <source
-                            src={dictData[0].phonetics[0].audio}
-                            type="audio/mp3"
-                          />
-                          Your browser does not support or has disabled playing
-                          audio
-                        </audio>
+                       {dictData && dictData[0]?.phonetics && dictData[0]?.phonetics[0] && (
+  <audio controls className="w-[80%]">
+    <source src={dictData[0].phonetics[0].audio} type="audio/mp3" />
+    Your browser does not support or has disabled playing audio
+  </audio>
+)}
+
                       </div>
                     </div>
                     </>
