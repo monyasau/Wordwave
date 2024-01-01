@@ -1,13 +1,19 @@
 import Dictionary from "./components/Dictionary";
 import Footer from "./components/Footer";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <Dictionary />
-      <Footer />
-    </>
+    <div
+      className="bg-no-repeat bg-cover bg-fixed"
+      style={{
+        backgroundImage:
+          "url(https://cdn.pixabay.com/photo/2016/09/02/13/47/machine-1639234_1280.jpg)",
+      }}
+    >
+      <div className="bg-gray-100/95 min-h-screen flex flex-col">
+        <Dictionary />
+        <Footer />
+      </div>
+    </div>
   );
 }
-
-export default App;
