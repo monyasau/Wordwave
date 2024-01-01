@@ -130,7 +130,7 @@ let Dictionary = () => {
 
                   {dictData[0].meanings[i].definitions.map((definition, j) => (
                     <>
-                      <div key={j} className="my-4 grid grid-cols-2">
+                      <div key={j} className="my-4 grid md:grid-cols-2">
                         <div className="border p-4  flex flex-col justify-center">
                           <p>
                             <span className="font-bold">Definition: </span>
