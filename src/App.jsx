@@ -1,5 +1,6 @@
 import Dictionary from "./components/Dictionary";
 import Footer from "./components/Footer";
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <div className="bg-gray-100/95 min-h-screen flex flex-col">
         <Dictionary />
         <Footer />
+        <Analytics/>
       </div>
     </div>
   );
