@@ -45,7 +45,7 @@ let Dictionary = () => {
     <div className="flex-grow p-4">
       <div className="">
         <div className="max-w-screen-sm mx-auto py-4 md:py-8">
-          <h1 className="text-center text-xl font-medium py-4">WordWave</h1>
+          <h1 className="text-center text-xl font-medium py-4">WordWave Dictionary</h1>
 
           <div className="w-full border rounded bg-white text-lg flex items-center overflow-hidden p-4">
             <input
